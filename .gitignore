@@ -1,0 +1,6 @@
+# 상점아이디와 mertkey 가 들어가는 설정 파일
+mall.conf
+
+# XPay 로그
+lgdacom/log/
+*.log
