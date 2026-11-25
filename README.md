@@ -26,6 +26,7 @@ xpay-samples/
 │   └── webapp/                # 그대로 배포할 수 있는 웹 애플리케이션
 ├── no-xpayclient/             # XPayClient를 쓰지 않는 샘플 (안심키인)
 ├── https-api/                 # HTTPS로 직접 호출하는 기능 (조회, 무이자할부, 에스크로)
+└── tools/package-java.sh      # Java 샘플을 JDK 별 배포용 zip 으로 묶는 스크립트
 ```
 
 ## 기능별 샘플
@@ -52,6 +53,13 @@ xpay-samples/
 
 각 폴더의 `README.md`에 진입 페이지, 수정할 값, 참고할 연동 가이드 페이지를 정리했습니다.
 
+## 빠르게 시작하기 (Java)
+
+1. `java/lgdacom` 폴더를 웹에서 접근할 수 없는 경로(예: `C:/lgdacom`)에 복사합니다. 샘플은 `C:/lgdacom`을 기준으로 작성되어 있습니다.
+2. `lgdacom/conf/mall.conf.example`을 `mall.conf`로 복사하고, 맨 아래에 `MID = mertkey`를 입력합니다. 테스트 MID는 앞에 `t`를 붙입니다. JDK 1.7 서버는 `mall.conf.jdk1.7.example`을 쓰고, `WEB-INF/lib`를 `lib-jdk1.7`의 jar 로 바꿉니다.
+3. `java/webapp`을 Tomcat 등 서블릿 컨테이너에 배포하고, `index.html`에서 기능을 선택해 실행합니다.
+
+자세한 내용은 [java/README.md](java/README.md)를 참고합니다. PHP 는 [php/README.md](php/README.md)를 참고합니다.
 
 ## 보안 주의사항
 
