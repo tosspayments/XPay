@@ -8,26 +8,26 @@ XPayClient 라이브러리로 토스페이먼츠 XPay 결제를 연동하는 샘
 
 ```text
 xpay-samples/
-├── php/                       # PHP 샘플 (PHP 5.6 ~ 8.x)
+├── asp/                       # ASP(Classic) 샘플
+│   ├── install/               # COM 라이브러리 (XPayClientCom.dll)
 │   ├── lgdacom/               # 설정 파일. 웹에서 접근할 수 없는 경로에 둡니다.
-│   └── webapp/                # 샘플 페이지. webapp/lgdacom/ 에 PHP 라이브러리를 둡니다.
+│   └── webapp/                # 그대로 배포할 수 있는 웹 애플리케이션
+├── dotnet/                    # ASP.NET(C#) 샘플
+│   ├── lgdacom/               # 설정 파일. 웹에서 접근할 수 없는 경로에 둡니다.
+│   └── webapp/                # 그대로 배포할 수 있는 웹 애플리케이션 (bin/XPayClientNet.dll)
+├── https-api/                 # HTTPS로 직접 호출하는 기능 (조회, 무이자할부, 에스크로)
 ├── java/                      # Java(JSP) 샘플
 │   ├── lgdacom/               # 설정 파일. 웹에서 접근할 수 없는 경로에 둡니다.
 │   ├── lib-jdk1.7/            # JDK 1.7 용 XPayClient 빌드와 라이브러리
 │   └── webapp/                # 그대로 배포할 수 있는 웹 애플리케이션
 │       ├── WEB-INF/lib/       # XPayClient 4.1.0.0 (JDK 1.8 ~ 17 빌드)와 공통 라이브러리
 │       └── <기능>/            # 기능별 샘플
-├── dotnet/                    # ASP.NET(C#) 샘플
-│   ├── lgdacom/               # 설정 파일. 웹에서 접근할 수 없는 경로에 둡니다.
-│   └── webapp/                # 그대로 배포할 수 있는 웹 애플리케이션 (bin/XPayClientNet.dll)
-├── asp/                       # ASP(Classic) 샘플
-│   ├── install/               # COM 라이브러리 (XPayClientCom.dll)
-│   ├── lgdacom/               # 설정 파일. 웹에서 접근할 수 없는 경로에 둡니다.
-│   └── webapp/                # 그대로 배포할 수 있는 웹 애플리케이션
 ├── no-xpayclient/             # XPayClient를 쓰지 않는 샘플 (안심키인)
-├── https-api/                 # HTTPS로 직접 호출하는 기능 (조회, 무이자할부, 에스크로)
-
+└── php/                       # PHP 샘플 (PHP 5.6 ~ 8.x)
+    ├── lgdacom/               # 설정 파일. 웹에서 접근할 수 없는 경로에 둡니다.
+    └── webapp/                # 샘플 페이지. webapp/lgdacom/ 에 PHP 라이브러리를 둡니다.
 ```
+
 
 ## 기능별 샘플
 
