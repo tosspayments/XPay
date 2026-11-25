@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 704" role="img"
+     aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Apple SD Gothic Neo', sans-serif">
+  <title id="t">Escrow service flow</title>
+  <desc id="d">Escrow flow between the buyer, merchant, Toss Payments, and the carrier, from payment creation to purchase confirmation or cancellation.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#3182f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <style>
+    .lane  { fill:#f2f4f6; stroke:#e5e8eb; }
+    .lane-mid { fill:#e8f3ff; stroke:#c9e2ff; }
+    .lane-t{ font-size:13.5px; font-weight:600; fill:#191f28; }
+    .life  { stroke:#e5e8eb; stroke-width:1.5; stroke-dasharray:3 5; }
+    .flow  { stroke:#3182f6; stroke-width:1.6; fill:none; }
+    .num   { font-size:11.5px; font-weight:700; fill:#fff; }
+    .numbg { fill:#3182f6; }
+    .lbl   { font-size:12.5px; fill:#191f28; }
+    .sub   { font-size:11px; fill:#8b95a1; }
+    .alt   { fill:none; stroke:#c9cdd2; stroke-dasharray:4 4; }
+    .alt-t { font-size:11px; font-weight:600; fill:#6b7684; }
+  </style>
+  <!-- lane headers -->
+  <rect class="lane" x="20" y="16" width="160" height="34" rx="6"/>
+  <text class="lane-t" x="100" y="38" text-anchor="middle">Buyer</text>
+  <rect class="lane-mid" x="240" y="16" width="160" height="34" rx="6"/>
+  <text class="lane-t" x="320" y="38" text-anchor="middle">Merchant</text>
+  <rect class="lane" x="460" y="16" width="160" height="34" rx="6"/>
+  <text class="lane-t" x="540" y="38" text-anchor="middle">Toss Payments</text>
+  <rect class="lane" x="680" y="16" width="160" height="34" rx="6"/>
+  <text class="lane-t" x="760" y="38" text-anchor="middle">Carrier</text>
+  <!-- lifelines -->
+  <line class="life" x1="100" y1="56" x2="100" y2="690"/>
+  <line class="life" x1="320" y1="56" x2="320" y2="690"/>
+  <line class="life" x1="540" y1="56" x2="540" y2="690"/>
+  <line class="life" x1="760" y1="56" x2="760" y2="690"/>
+  <!-- 1 merchant → toss -->
+  <text class="lbl" x="437.0" y="85" text-anchor="middle">Create payment</text>
+  <line class="flow" x1="326" y1="96" x2="534" y2="96" marker-end="url(#a)"/>
+  <circle class="numbg" cx="340" cy="96" r="9"/>
+  <text class="num" x="340" y="100" text-anchor="middle">1</text>
+  <!-- 2 merchant → toss -->
+  <text class="lbl" x="437.0" y="135" text-anchor="middle">Register escrow transaction</text>
+  <line class="flow" x1="326" y1="146" x2="534" y2="146" marker-end="url(#a)"/>
+  <circle class="numbg" cx="340" cy="146" r="9"/>
+  <text class="num" x="340" y="150" text-anchor="middle">2</text>
+  <!-- 3 merchant → toss -->
+  <text class="lbl" x="437.0" y="185" text-anchor="middle">Register shipping information</text>
+  <text class="sub" x="437.0" y="212" text-anchor="middle">API or merchant admin</text>
+  <line class="flow" x1="326" y1="196" x2="534" y2="196" marker-end="url(#a)"/>
+  <circle class="numbg" cx="340" cy="196" r="9"/>
+  <text class="num" x="340" y="200" text-anchor="middle">3</text>
+  <!-- 4 carrier → toss -->
+  <text class="lbl" x="643.0" y="243" text-anchor="middle">Delivery completion information</text>
+  <line class="flow" x1="754" y1="254" x2="546" y2="254" marker-end="url(#a)"/>
+  <circle class="numbg" cx="740" cy="254" r="9"/>
+  <text class="num" x="740" y="258" text-anchor="middle">4</text>
+  <!-- 5 toss → merchant -->
+  <text class="lbl" x="423.0" y="293" text-anchor="middle">Delivery completion information</text>
+  <line class="flow" x1="534" y1="304" x2="326" y2="304" marker-end="url(#a)"/>
+  <circle class="numbg" cx="520" cy="304" r="9"/>
+  <text class="num" x="520" y="308" text-anchor="middle">5</text>
+  <!-- 6 toss → buyer -->
+  <text class="lbl" x="313.0" y="343" text-anchor="middle">Purchase confirmation request email</text>
+  <line class="flow" x1="534" y1="354" x2="106" y2="354" marker-end="url(#a)"/>
+  <circle class="numbg" cx="520" cy="354" r="9"/>
+  <text class="num" x="520" y="358" text-anchor="middle">6</text>
+  <rect class="alt" x="40" y="398" width="560" height="266" rx="4"/>
+  <rect x="40" y="398" width="34" height="18" fill="#f2f4f6"/>
+  <text class="alt-t" x="57" y="411" text-anchor="middle">alt</text>
+  <!-- 7 buyer → toss -->
+  <text class="lbl" x="327.0" y="415" text-anchor="middle">Buyer clicks Confirm purchase in the email</text>
+  <line class="flow" x1="106" y1="426" x2="534" y2="426" marker-end="url(#a)"/>
+  <circle class="numbg" cx="120" cy="426" r="9"/>
+  <text class="num" x="120" y="430" text-anchor="middle">7</text>
+  <!-- 8 toss → merchant -->
+  <text class="lbl" x="423.0" y="465" text-anchor="middle">Send result</text>
+  <line class="flow" x1="534" y1="476" x2="326" y2="476" marker-end="url(#a)"/>
+  <circle class="numbg" cx="520" cy="476" r="9"/>
+  <text class="num" x="520" y="480" text-anchor="middle">8</text>
+  <line class="alt" x1="40" y1="512" x2="600" y2="512"/>
+  <!-- 7 buyer → toss -->
+  <text class="lbl" x="327.0" y="527" text-anchor="middle">Buyer clicks Cancel purchase in the email</text>
+  <line class="flow" x1="106" y1="538" x2="534" y2="538" marker-end="url(#a)"/>
+  <circle class="numbg" cx="120" cy="538" r="9"/>
+  <text class="num" x="120" y="542" text-anchor="middle">7</text>
+  <!-- 7 merchant → toss -->
+  <text class="lbl" x="437.0" y="577" text-anchor="middle">Accept purchase cancellation</text>
+  <line class="flow" x1="326" y1="588" x2="534" y2="588" marker-end="url(#a)"/>
+  <circle class="numbg" cx="340" cy="588" r="9"/>
+  <text class="num" x="340" y="592" text-anchor="middle">7</text>
+  <!-- 8 toss → merchant -->
+  <text class="lbl" x="423.0" y="627" text-anchor="middle">Send result</text>
+  <line class="flow" x1="534" y1="638" x2="326" y2="638" marker-end="url(#a)"/>
+  <circle class="numbg" cx="520" cy="638" r="9"/>
+  <text class="num" x="520" y="642" text-anchor="middle">8</text>
+</svg>

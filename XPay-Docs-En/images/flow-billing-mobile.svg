@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 620" role="img"
+     aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">
+  <title id="t">Mobile billing key issuance and payment flow</title>
+  <desc id="d">Steps 1–5 issue the billing key, and steps 6–7 approve payments with it. Same flow as PC; page names and navigation differ.</desc>
+
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#3182f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#8b95a1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <style>
+    .lane{fill:#f2f4f6;stroke:#e5e8eb}.lane-mid{fill:#e8f3ff;stroke:#c9e2ff}
+    .lane-t{font-size:13.5px;font-weight:600;fill:#191f28}
+    .life{stroke:#e5e8eb;stroke-width:1.5;stroke-dasharray:3 5}
+    .flow{stroke:#3182f6;stroke-width:1.6;fill:none}
+    .flow-g{stroke:#8b95a1;stroke-width:1.6;fill:none;stroke-dasharray:5 4}
+    .numbg{fill:#3182f6}.numbg-g{fill:#8b95a1}.num{font-size:11.5px;font-weight:700;fill:#fff}
+    .lbl{font-size:12.5px;fill:#191f28}
+    .page{font-size:11.5px;fill:#1b64da;font-family:Consolas,Menlo,monospace}
+    .note{font-size:11px;fill:#8b95a1}
+    .phase{fill:#f9fafb;stroke:#e5e8eb;stroke-dasharray:4 4}
+    .phase-t{font-size:11.5px;font-weight:600;fill:#4e5968}
+    .tag{font-size:10.5px;fill:#8a5a00}
+    .tagbg{fill:#fff4e0;stroke:#ffe0a3}
+  </style>
+
+  <rect class="phase" x="14" y="66" width="752" height="286" rx="8"/>
+  <text class="phase-t" x="26" y="84">Phase 1 · Issue billing key (once)</text>
+  <rect class="phase" x="14" y="362" width="752" height="150" rx="8"/>
+  <text class="phase-t" x="26" y="380">Phase 2 · Pay with billing key (repeat)</text>
+
+  <rect class="lane" x="20" y="16" width="170" height="34" rx="6"/>
+  <text class="lane-t" x="105" y="38" text-anchor="middle">Buyer</text>
+  <rect class="lane-mid" x="305" y="16" width="170" height="34" rx="6"/>
+  <text class="lane-t" x="390" y="38" text-anchor="middle">Merchant server</text>
+  <rect class="lane" x="590" y="16" width="170" height="34" rx="6"/>
+  <text class="lane-t" x="675" y="38" text-anchor="middle">Toss Payments</text>
+
+  <line class="life" x1="105" y1="56" x2="105" y2="596"/>
+  <line class="life" x1="390" y1="56" x2="390" y2="596"/>
+  <line class="life" x1="675" y1="56" x2="675" y2="596"/>
+
+  <!-- 1 -->
+  <text class="lbl" x="247" y="106" text-anchor="middle">Enter card information</text>
+  <text class="page" x="247" y="121" text-anchor="middle">CardBillingAuth.html</text>
+  <line class="flow" x1="105" y1="132" x2="382" y2="132" marker-end="url(#a)"/>
+  <circle class="numbg" cx="105" cy="132" r="9"/><text class="num" x="105" y="136" text-anchor="middle">1</text>
+
+  <!-- 2 -->
+  <text class="lbl" x="532" y="160" text-anchor="middle">Billing key auth request</text>
+  <text class="page" x="532" y="175" text-anchor="middle">MobileXpay_CardBillingAuth</text>
+  <line class="flow" x1="390" y1="186" x2="667" y2="186" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="186" r="9"/><text class="num" x="390" y="190" text-anchor="middle">2</text>
+
+  <!-- 3 -->
+  <text class="lbl" x="390" y="214" text-anchor="middle">Card company auth (page navigation)</text>
+  <line class="flow-g" x1="667" y1="230" x2="113" y2="230" marker-start="url(#b)" marker-end="url(#b)"/>
+  <circle class="numbg-g" cx="675" cy="230" r="9"/><text class="num" x="675" y="234" text-anchor="middle">3</text>
+
+  <!-- 4 -->
+  <text class="lbl" x="532" y="258" text-anchor="middle">Deliver billing key</text>
+  <text class="page" x="532" y="273" text-anchor="middle">LGD_BILLKEY → returnurl</text>
+  <line class="flow" x1="675" y1="284" x2="398" y2="284" marker-end="url(#a)"/>
+  <circle class="numbg" cx="675" cy="284" r="9"/><text class="num" x="675" y="288" text-anchor="middle">4</text>
+
+  <!-- 5 -->
+  <text class="lbl" x="500" y="310" text-anchor="start">Verify and store encrypted</text>
+  <text class="page" x="500" y="325" text-anchor="start">MobileXpay_CardBillingAuth_payres</text>
+  <path class="flow" d="M390 304 H470 V332 H398" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="304" r="9"/><text class="num" x="390" y="308" text-anchor="middle">5</text>
+
+  <!-- 6 -->
+  <text class="lbl" x="532" y="410" text-anchor="middle">Approval request with billing key</text>
+  <text class="page" x="532" y="425" text-anchor="middle">CardAuth · LGD_BILLKEY</text>
+  <line class="flow" x1="390" y1="436" x2="667" y2="436" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="436" r="9"/><text class="num" x="390" y="440" text-anchor="middle">6</text>
+
+  <!-- 7 -->
+  <text class="lbl" x="532" y="464" text-anchor="middle">Approval result</text>
+  <text class="page" x="532" y="479" text-anchor="middle">LGD_RESPCODE</text>
+  <line class="flow" x1="675" y1="490" x2="398" y2="490" marker-end="url(#a)"/>
+  <circle class="numbg" cx="675" cy="490" r="9"/><text class="num" x="675" y="494" text-anchor="middle">7</text>
+
+  <!-- mobile-only marker -->
+  <rect class="tagbg" x="20" y="100" width="112" height="20" rx="10"/>
+  <text class="tag" x="76" y="114" text-anchor="middle">LGD_PAYWINDOWTYPE</text>
+
+  <line x1="20" y1="540" x2="760" y2="540" stroke="#e5e8eb" stroke-width="1"/>
+  <text class="note" x="20" y="560">Same flow as PC with different page names. The window opens by page navigation, not as a pop-up.</text>
+  <text class="note" x="20" y="576">Mobile adds the LGD_PAYWINDOWTYPE parameter. The default is CardBillingAuth_smartphone.</text>
+  <text class="note" x="20" y="592">The issued LGD_BILLKEY is as sensitive as card data. Store it encrypted.</text>
+</svg>

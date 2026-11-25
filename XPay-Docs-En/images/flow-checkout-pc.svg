@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 600" role="img"
+     aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif">
+  <title id="t">PC payment window flow</title>
+  <desc id="d">Eight steps between the buyer, merchant server, and Toss Payments, from entering payment information to receiving the final approval result.</desc>
+
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#3182f6" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#8b95a1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <style>
+    .lane  { fill:#f2f4f6; stroke:#e5e8eb; }
+    .lane-mid { fill:#e8f3ff; stroke:#c9e2ff; }
+    .lane-t{ font-size:13.5px; font-weight:600; fill:#191f28; }
+    .life  { stroke:#e5e8eb; stroke-width:1.5; stroke-dasharray:3 5; }
+    .flow  { stroke:#3182f6; stroke-width:1.6; fill:none; }
+    .flow-g{ stroke:#8b95a1; stroke-width:1.6; fill:none; stroke-dasharray:5 4; }
+    .num   { font-size:11.5px; font-weight:700; fill:#fff; }
+    .numbg { fill:#3182f6; }
+    .numbg-g { fill:#8b95a1; }
+    .lbl   { font-size:12.5px; fill:#191f28; }
+    .page  { font-size:11.5px; fill:#1b64da; font-family:Consolas,Menlo,monospace; }
+    .note  { font-size:11px; fill:#8b95a1; }
+  </style>
+
+  <!-- lane headers -->
+  <rect class="lane"     x="20"  y="16" width="170" height="34" rx="6"/>
+  <text class="lane-t" x="105" y="38" text-anchor="middle">Buyer</text>
+  <rect class="lane-mid" x="305" y="16" width="170" height="34" rx="6"/>
+  <text class="lane-t" x="390" y="38" text-anchor="middle">Merchant server</text>
+  <rect class="lane"     x="590" y="16" width="170" height="34" rx="6"/>
+  <text class="lane-t" x="675" y="38" text-anchor="middle">Toss Payments</text>
+
+  <!-- lifelines -->
+  <line class="life" x1="105" y1="56" x2="105" y2="576"/>
+  <line class="life" x1="390" y1="56" x2="390" y2="576"/>
+  <line class="life" x1="675" y1="56" x2="675" y2="576"/>
+
+  <!-- ① buyer → merchant -->
+  <text class="lbl" x="247" y="88" text-anchor="middle">Enter payment information</text>
+  <text class="page" x="247" y="103" text-anchor="middle">sample_crossplatform</text>
+  <line class="flow" x1="105" y1="114" x2="382" y2="114" marker-end="url(#a)"/>
+  <circle class="numbg" cx="105" cy="114" r="9"/><text class="num" x="105" y="118" text-anchor="middle">1</text>
+
+  <!-- ② merchant internal -->
+  <text class="lbl" x="500" y="152" text-anchor="start">Build auth request</text>
+  <text class="page" x="500" y="167" text-anchor="start">payreq_crossplatform</text>
+  <path class="flow" d="M390 146 H470 V174 H398" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="146" r="9"/><text class="num" x="390" y="150" text-anchor="middle">2</text>
+
+  <!-- ③ merchant → Toss -->
+  <text class="lbl" x="532" y="204" text-anchor="middle">Open unified payment window</text>
+  <line class="flow" x1="390" y1="220" x2="667" y2="220" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="220" r="9"/><text class="num" x="390" y="224" text-anchor="middle">3</text>
+
+  <!-- ④ Toss ↔ buyer -->
+  <text class="lbl" x="390" y="256" text-anchor="middle">Select method · enter details · authenticate</text>
+  <line class="flow-g" x1="667" y1="272" x2="113" y2="272" marker-start="url(#b)" marker-end="url(#b)"/>
+  <circle class="numbg-g" cx="675" cy="272" r="9"/><text class="num" x="675" y="276" text-anchor="middle">4</text>
+
+  <!-- ⑤ Toss → merchant -->
+  <text class="lbl" x="532" y="308" text-anchor="middle">Deliver auth key</text>
+  <text class="page" x="532" y="323" text-anchor="middle">LGD_PAYKEY → returnurl</text>
+  <line class="flow" x1="675" y1="334" x2="398" y2="334" marker-end="url(#a)"/>
+  <circle class="numbg" cx="675" cy="334" r="9"/><text class="num" x="675" y="338" text-anchor="middle">5</text>
+
+  <!-- ⑥ merchant internal -->
+  <text class="lbl" x="500" y="372" text-anchor="start">Deliver auth result</text>
+  <text class="page" x="500" y="387" text-anchor="start">payres</text>
+  <path class="flow" d="M390 366 H470 V394 H398" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="366" r="9"/><text class="num" x="390" y="370" text-anchor="middle">6</text>
+
+  <!-- ⑦ merchant → Toss -->
+  <text class="lbl" x="532" y="424" text-anchor="middle">Final approval request</text>
+  <text class="page" x="532" y="439" text-anchor="middle">XPayClient · PaymentByKey</text>
+  <line class="flow" x1="390" y1="450" x2="667" y2="450" marker-end="url(#a)"/>
+  <circle class="numbg" cx="390" cy="450" r="9"/><text class="num" x="390" y="454" text-anchor="middle">7</text>
+
+  <!-- ⑧ Toss → merchant -->
+  <text class="lbl" x="532" y="488" text-anchor="middle">Approval result</text>
+  <text class="page" x="532" y="503" text-anchor="middle">LGD_RESPCODE</text>
+  <line class="flow" x1="675" y1="514" x2="398" y2="514" marker-end="url(#a)"/>
+  <circle class="numbg" cx="675" cy="514" r="9"/><text class="num" x="675" y="518" text-anchor="middle">8</text>
+
+  <!-- footnote -->
+  <line x1="20" y1="544" x2="760" y2="544" stroke="#e5e8eb" stroke-width="1"/>
+  <text class="note" x="20" y="564">Solid blue lines are server-to-server calls; dashed gray lines are buyer interactions with the payment window.</text>
+  <text class="note" x="20" y="580">⑤ returnurl is a child page of payreq_crossplatform and passes the key to the parent's payment_return function.</text>
+</svg>
